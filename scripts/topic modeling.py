@@ -49,7 +49,7 @@ fig = px.bar(
 fig.show()
 
 # Save to HTML
-fig.write_html("topic_modeling-top5-vs-bottom5-topics.html")
+fig.write_html("../outputs/exploration/topic_modeling-top5-vs-bottom5-topics.html")
 
 
 
@@ -81,7 +81,7 @@ fig = px.bar(
 fig.show()
 
 # Save plot to HTML
-fig.write_html("topic_modeling-top5-vs-bottom5-monthly.html")
+fig.write_html("../outputs/exploration/topic_modeling-top5-vs-bottom5-monthly.html")
 
 
 
@@ -121,7 +121,7 @@ fig = px.bar(
 fig.show()
 
 # Save plot to separate HTML file
-fig.write_html("topic_modeling-top5-vs-bottom5-gaza-war-onward.html")
+fig.write_html("../outputs/exploration/topic_modeling-top5-vs-bottom5-gaza-war-onward.html")
 
 
 
@@ -174,4 +174,4 @@ fig = px.line(
 fig.show()
 
 # Step 13: Save the graph to a file you can open in a web browser
-fig.write_html("visualization-israel-gaza-hamas-trend.html")
+fig.write_html("../outputs/visualization/visualization-israel-gaza-hamas-trend.html")
