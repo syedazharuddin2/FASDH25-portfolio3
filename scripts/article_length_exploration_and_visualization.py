@@ -11,7 +11,8 @@ df = pd.read_csv("../data/dataframes/length/length-year-month.csv")
 # Exploration 1: Do articles published during conflict periods tend to be shorter than those in calmer periods?
 # Flag rows that fall within the Oct–Dec 2023 conflict period 
 df['conflict_period'] = df.apply(lambda x: 1 if (x['year'] == 2023) and (x['month'] >= 10) else 0, axis=1)  
-
+# Print to check
+print(df['conflict_period'])
 # Plot a line chart of article length by month for each year to visualize trends
 fig = px.bar(df, x='month', y='length-mean', color='year',  
               title='Average Article Length by Month (2021-2024)',  
@@ -23,9 +24,12 @@ fig.add_vrect(x0=10, x1=12, fillcolor="red", opacity=0.1, line_width=0,
 # Improve readability: show tooltips across all years when hovering over a month
 fig.update_layout(hovermode='x unified', font=dict(size=12))
 # Save as interactive HTML
-fig.write_html("../outputs/exploration/article_lengths_conflict.html")  
+fig.write_html("../outputs/visualization/article_lengths_conflict.html")  
+# Save as csv
+df['conflict_period'].to_csv('../outputs/exploration/article_lengths_conflict.csv')
 
-# Exploration 1: average article length over time to observe monthly trends
+
+# Average article length over time to observe monthly trends
 # Display column names to verify structure
 print("Columns:", df.columns.tolist())
 
@@ -45,15 +49,19 @@ fig = px.bar(df, x='date', y='length-mean',
 # Display the monthly length bar chart
 fig.show()
 # Save the full time-series chart to an HTML file for reporting
-fig.write_html("../outputs/exploration/article_lengths_over_time.html")
+fig.write_html("../outputs/visualization/article_lengths_over_time.html")
+# Save as csv
+df['date'].to_csv('../outputs/exploration/article_lengths_overtime.csv')
 
-# Exploration 2: article lengths by month during wartime
+
+# Article lengths by month during wartime
 # Define start of wartime period (Oct 2023)
 war_start = pd.to_datetime("2023-10-01")  # Start from beginning of October to include whole month
 
 # Keep only data from wartime months (Oct 2023 onward)
 wartime_df = df[df['date'] >= war_start]
-
+# Print to check
+print(wartime_df)
 # Visualize article lengths by month during wartime
 fig = px.bar(wartime_df, x='date', y='length-mean',
              title='Monthly Average Article Length After October 2023 (Wartime)',
@@ -62,8 +70,8 @@ fig = px.bar(wartime_df, x='date', y='length-mean',
 # Show wartime monthly chart
 fig.show()
 # Save wartime-only chart to HTML for use in comparisons
-fig.write_html("../outputs/exploration/article_lengths_wartime_only.html")
-# Optional: Save wartime data separately
+fig.write_html("../outputs/visualization/article_lengths_wartime_only.html")
+# Save wartime data separately
 wartime_df.to_csv("../outputs/exploration/article_lengths_wartime_only.csv", index=False)
 
 
@@ -94,6 +102,6 @@ fig.show()
 # Save
 fig.write_html("../outputs/visualization/article_lengths_by_year_and_period_by_period_wartime_vs_Calm.html")
 # Save the grouped data to CSV
-yearly_period_avg.to_csv("../outputs/visualization/yearly_article_lengths_by_period_wartime_vs_Calm.csv", index=False)
+yearly_period_avg.to_csv("../outputs/exploration/yearly_article_lengths_by_period_wartime_vs_Calm.csv", index=False)
 
 
