@@ -49,8 +49,9 @@ fig = px.bar(
 fig.show()
 
 # Save to HTML
-fig.write_html("../outputs/exploration/topic_modeling-top5-vs-bottom5-topics.html")
-
+fig.write_html("../outputs/visualization/topic_modeling-top5-vs-bottom5-topics.html")
+# Save as Exploration
+grouped_data.to_csv("../outputs/exploration/topic_modeling-top5-vs-bottom5-topics.csv")
 
 
 
@@ -81,8 +82,9 @@ fig = px.bar(
 fig.show()
 
 # Save plot to HTML
-fig.write_html("../outputs/exploration/topic_modeling-top5-vs-bottom5-monthly.html")
-
+fig.write_html("../outputs/visualization/topic_modeling-top5-vs-bottom5-monthly.html")
+# Save as CSV
+grouped_data.to_csv("../outputs/exploration/topic_modeling-top5-vs-bottom5-monthly.csv")
 
 
 # Convert to datetime using year, month, day (safe assignment)
@@ -121,8 +123,9 @@ fig = px.bar(
 fig.show()
 
 # Save plot to separate HTML file
-fig.write_html("../outputs/exploration/topic_modeling-top5-vs-bottom5-gaza-war-onward.html")
-
+fig.write_html("../outputs/visualization/topic_modeling-top5-vs-bottom5-gaza-war-onward.html")
+# Save as Csv
+grouped_war_data.to_csv("../outputs/exploration/topic_modeling-top5-vs-bottom5-gaza-war-onward.csv")
 
 
 
@@ -175,3 +178,5 @@ fig.show()
 
 # Step 13: Save the graph to a file you can open in a web browser
 fig.write_html("../outputs/visualization/visualization-israel-gaza-hamas-trend.html")
+# save as csv
+grouped.to_csv("../outputs/exploration/visualization-israel-gaza-hamas-trend.csv")
