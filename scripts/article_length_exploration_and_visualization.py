@@ -8,6 +8,23 @@ import plotly.express as px
 # Load article length data by year and month
 df = pd.read_csv("../data/dataframes/length/length-year-month.csv")  
 
+# Exploration 1: Do articles published during conflict periods tend to be shorter than those in calmer periods?
+# Flag rows that fall within the Oct–Dec 2023 conflict period 
+df['conflict_period'] = df.apply(lambda x: 1 if (x['year'] == 2023) and (x['month'] >= 10) else 0, axis=1)  
+
+# Plot a line chart of article length by month for each year to visualize trends
+fig = px.bar(df, x='month', y='length-mean', color='year',  
+              title='Average Article Length by Month (2021-2024)',  
+              labels={'length-mean': 'Length (characters)', 'month': 'Month'},
+              barmode='group')
+# Visually highlight the conflict period (Oct to Dec) on the chart
+fig.add_vrect(x0=10, x1=12, fillcolor="red", opacity=0.1, line_width=0,  
+              annotation_text="2023 Conflict Period", annotation_position="top left")
+# Improve readability: show tooltips across all years when hovering over a month
+fig.update_layout(hovermode='x unified', font=dict(size=12))
+# Save as interactive HTML
+fig.write_html("../outputs/exploration/article_lengths_conflict.html")  
+
 # Exploration 1: average article length over time to observe monthly trends
 # Display column names to verify structure
 print("Columns:", df.columns.tolist())
