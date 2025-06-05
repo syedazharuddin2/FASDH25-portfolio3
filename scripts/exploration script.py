@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the TF-IDF data file
-file_path = 'tfidf/tfidf-over-0.3.csv'
+file_path = '../data/dataframes/tfidf/tfidf-over-0.3.csv'
 data = pd.read_csv(file_path)
 
 # Print column names and a quick preview
@@ -35,8 +35,8 @@ edges = data[['filename-1', 'filename-2', 'similarity']].rename(columns={
 edges_filtered = edges[edges['Weight'] >= 0.6]
 
 # exporting nodes and edges to CSV
-nodes.to_csv('yearly-gephi-nodes.csv', index=False)
-edges_filtered.to_csv('yearly-gephi-edges.csv', index=False)
+nodes.to_csv('../outputs/exploration/yearly-gephi-nodes.csv', index=False)
+edges_filtered.to_csv('../outputs/exploration/yearly-gephi-edges.csv', index=False)
 
 print("Files saved:")
 print("- yearly-gephi-nodes.csv")
